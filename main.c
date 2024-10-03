@@ -4,23 +4,18 @@
 // #include <Windows.h>
 // #include <time.h>
 
-
 // programmation modulaire :
 #include "functions.h"
 
-
-
 dentaires_reservation clien_reservation[max_reser];
- 
 
-
-
-int main(){
+int main()
+{
 
     int choice_main;
 
-        // logo :
-        printf("\033[1;34m"
+    // logo :
+    printf("\033[1;34m"
            "            _____________\n"
            "           /             \\\n"
            "          /   Dental      \\\n"
@@ -40,26 +35,20 @@ int main(){
     do
     {
 
-           
-
         show_menu();
-
 
         // show menu :
         printf("Enter your choice : ");
         int input = scanf("%d", &choice_main);
 
-
         while (input != 1 || choice_main > 7 || choice_main <= 0)
         {
-            printf(COLOR_RED"wrong choice.!!\n"COLOR_BLUE);
+            printf(COLOR_RED "wrong choice.!!\n" COLOR_BLUE);
             getchar();
             printf("Enter your choice : ");
             input = scanf("%d", &choice_main);
             getchar();
-            
         }
-        
 
         switch (choice_main)
         {
@@ -78,7 +67,7 @@ int main(){
             wit_for_entr();
             system("cls");
             break;
-        
+
         case 4:
             sorting_res();
             wit_for_entr();
@@ -100,9 +89,7 @@ int main(){
             break;
         }
 
-
     } while (1);
-    
 
     return 0;
 }

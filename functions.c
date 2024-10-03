@@ -12,7 +12,7 @@ int count_reservation = 0;
 // wait for enter :
 void wit_for_entr()
 {
-    printf(COLOR_YELLOW"\nPress enter to continue ..."COLOR_BLUE);
+    printf(COLOR_YELLOW "\nPress enter to continue ..." COLOR_BLUE);
     getchar();
     getchar();
 }
@@ -37,7 +37,7 @@ void for_add()
 
     if (count_reservation >= max_reser)
     {
-        printf(COLOR_RED"reservations plein.\n"COLOR_BLUE);
+        printf(COLOR_RED "reservations plein.\n" COLOR_BLUE);
         return;
     }
     else
@@ -61,9 +61,9 @@ void for_add()
         {
             for (int i = 0; i < loop_choose; i++)
             {
-                printf(COLOR_GREEN"\n------------------------------\n");
-                printf(COLOR_BLUE"Enter reservation : \'%d\'", count_reservation + 1);
-                printf(COLOR_GREEN"\n-----------------\n"COLOR_BLUE);
+                printf(COLOR_GREEN "\n------------------------------\n");
+                printf(COLOR_BLUE "Enter reservation : \'%d\'", count_reservation + 1);
+                printf(COLOR_GREEN "\n-----------------\n" COLOR_BLUE);
 
                 add_reservation();
             }
@@ -101,11 +101,11 @@ void add_reservation()
 
     // statut :
     int choice_status;
-    printf(COLOR_GREEN"\n-----------------\n");
-    printf(COLOR_BLUE"choose status : \n");
+    printf(COLOR_GREEN "\n-----------------\n");
+    printf(COLOR_BLUE "choose status : \n");
     printf("1. valid.    |  2. postponed.\n");
     printf("3. canceled. |  4. processed.\n");
-    printf(COLOR_GREEN"--------\n"COLOR_BLUE);
+    printf(COLOR_GREEN "--------\n" COLOR_BLUE);
     do
     {
         printf("enter : ");
@@ -152,8 +152,7 @@ void add_reservation()
     } while (clien_reservation[count_reservation].date_reservation.year > 2025 || clien_reservation[count_reservation].date_reservation.year <= 2023);
 
     count_reservation++;
-    printf(COLOR_GREEN"successfully done!!\n"COLOR_GREEN);
-
+    printf(COLOR_GREEN "successfully done!!\n" COLOR_GREEN);
 }
 
 // 2. Modifier ou supprimer une réservation : ===============================================
@@ -162,10 +161,9 @@ void modify_delet()
 
     if (count_reservation == 0)
     {
-        printf(COLOR_YELLOW"reservations empty.\n"COLOR_BLUE);
+        printf(COLOR_YELLOW "reservations empty.\n" COLOR_BLUE);
         return;
     }
-
 
     int choice_2;
     // menu 2 modify and delet :
@@ -179,7 +177,7 @@ void modify_delet()
 
     while (choice_2 < 1 || choice_2 > 3)
     {
-        printf(COLOR_RED"choice not found.!!"COLOR_BLUE);
+        printf(COLOR_RED "choice not found.!!" COLOR_BLUE);
         printf("enter you choice again : ");
         scanf("%d", &choice_2);
     }
@@ -205,7 +203,7 @@ void modify_delet()
 
         if (found != 1)
         {
-            printf(COLOR_RED"reservation not found.\n"COLOR_BLUE);
+            printf(COLOR_RED "reservation not found.\n" COLOR_BLUE);
             return;
         }
         else
@@ -231,7 +229,7 @@ void modify_delet()
                 scanf("%d", &choice_menu_2_1);
             } while (choice_menu_2_1 > 7 || choice_menu_2_1 < 0);
 
-            printf(COLOR_GREEN"\n----------------------\n"COLOR_BLUE);
+            printf(COLOR_GREEN "\n----------------------\n" COLOR_BLUE);
             switch (choice_menu_2_1)
             {
             case 0:
@@ -255,11 +253,11 @@ void modify_delet()
 
                 // statut :
                 int choice_status;
-                printf(COLOR_GREEN"\n------------------\n");
-                printf(COLOR_BLUE"choose new status : \n");
+                printf(COLOR_GREEN "\n------------------\n");
+                printf(COLOR_BLUE "choose new status : \n");
                 printf("1. valid.    |  2. postponed.\n");
                 printf("3. canceled. |  4. processed.\n");
-                printf(COLOR_GREEN"--------\n"COLOR_BLUE);
+                printf(COLOR_GREEN "--------\n" COLOR_BLUE);
                 do
                 {
                     printf("enter : ");
@@ -328,11 +326,11 @@ void modify_delet()
                 break;
             case 5:
                 // statut :
-                printf(COLOR_GREEN"\n------------------\n");
-                printf(COLOR_BLUE"choose new status : \n");
+                printf(COLOR_GREEN "\n------------------\n");
+                printf(COLOR_BLUE "choose new status : \n");
                 printf("1. valid.    |  2. postponed.\n");
                 printf("3. canceled. |  4. processed.\n");
-                printf(COLOR_GREEN"-------\n"COLOR_BLUE);
+                printf(COLOR_GREEN "-------\n" COLOR_BLUE);
                 do
                 {
                     printf("enter : ");
@@ -385,7 +383,7 @@ void modify_delet()
                 break;
             }
 
-            printf(COLOR_GREEN"successfully done!!\n"COLOR_GREEN);
+            printf(COLOR_GREEN "successfully done!!\n" COLOR_GREEN);
         }
     }
     else if (choice_2 == 2)
@@ -409,7 +407,7 @@ void modify_delet()
 
         if (found != 1)
         {
-            printf(COLOR_RED"reservation not found.\n"COLOR_BLUE);
+            printf(COLOR_RED "reservation not found.\n" COLOR_BLUE);
             return;
         }
         else
@@ -421,8 +419,7 @@ void modify_delet()
             }
             count_reservation--;
         }
-        printf(COLOR_GREEN"successfully done!!\n"COLOR_GREEN);
-
+        printf(COLOR_GREEN "successfully done!!\n" COLOR_GREEN);
     }
     else if (choice_2 == 3)
     {
@@ -436,14 +433,13 @@ void affichage_res()
 
     if (count_reservation == 0)
     {
-        printf(COLOR_YELLOW"reservations empty.\n"COLOR_BLUE);
+        printf(COLOR_YELLOW "reservations empty.\n" COLOR_BLUE);
         return;
     }
 
-
     printf(COLOR_GREEN "\n============================== Reservations List ================================\n");
     printf(COLOR_GREEN "\n+--------------------------------------------------------------------------------------+\n");
-    printf(COLOR_BLUE"       ToTal : %d", count_reservation);
+    printf(COLOR_BLUE "       ToTal : %d", count_reservation);
     printf(COLOR_GREEN "\n+----------+------------+------------+----------------+-------+----------+-------------+\n");
     printf(COLOR_BLUE "| ID       | f-name     | l-name     | phone number   | age   | status   | date        |");
     printf(COLOR_GREEN "\n+----------+------------+------------+----------------+-------+----------+-------------+\n");
@@ -464,7 +460,7 @@ void affichage_res()
                clien_reservation[i].date_reservation.year);
     }
 
-    printf(COLOR_GREEN "+----------+------------+------------+----------------+-------+----------+-------------+\n"COLOR_BLUE);
+    printf(COLOR_GREEN "+----------+------------+------------+----------------+-------+----------+-------------+\n" COLOR_BLUE);
 }
 
 // 4. Tri des réservations : ===============================================
@@ -473,10 +469,9 @@ void sorting_res()
 
     if (count_reservation == 0)
     {
-        printf(COLOR_YELLOW"reservations empty.\n"COLOR_BLUE);
+        printf(COLOR_YELLOW "reservations empty.\n" COLOR_BLUE);
         return;
     }
-
 
     int choice_menu_4;
     // menu 4 :
@@ -495,7 +490,7 @@ void sorting_res()
     if (choice_menu_4 == 1)
     {
         // name sort :
-        printf(COLOR_GREEN"sorting by name : ------------\n"COLOR_BLUE);
+        printf(COLOR_GREEN "sorting by name : ------------\n" COLOR_BLUE);
         for (int i = 0; i < count_reservation - 1; i++)
         {
             for (int j = 0; j < count_reservation - 1; j++)
@@ -515,7 +510,7 @@ void sorting_res()
     else if (choice_menu_4 == 2)
     {
         // staus sort :
-        printf(COLOR_GREEN"sorting by status : ------------\n"COLOR_BLUE);
+        printf(COLOR_GREEN "sorting by status : ------------\n" COLOR_BLUE);
         for (int i = 0; i < count_reservation - 1; i++)
         {
             for (int j = 0; j < count_reservation - 1; j++)
@@ -530,55 +525,48 @@ void sorting_res()
         }
         // affichage afte tri by status:
         affichage_res();
-    }else if ( choice_menu_4 == 3 )
+    }
+    else if (choice_menu_4 == 3)
     {
-        
-        printf(COLOR_GREEN"sorting by date : ------------\n"COLOR_BLUE);
+
+        printf(COLOR_GREEN "sorting by date : ------------\n" COLOR_BLUE);
         for (int i = 0; i < count_reservation - 1; i++)
         {
-            
+
             for (int j = 0; j < count_reservation - 1; j++)
             {
-            
-                if (clien_reservation[j].date_reservation.year == clien_reservation[j+1].date_reservation.year)
+
+                if (clien_reservation[j].date_reservation.year == clien_reservation[j + 1].date_reservation.year)
                 {
 
-                    if (clien_reservation[j].date_reservation.month == clien_reservation[j+1].date_reservation.month)
+                    if (clien_reservation[j].date_reservation.month == clien_reservation[j + 1].date_reservation.month)
                     {
-                        if (clien_reservation[j].date_reservation.day > clien_reservation[j+1].date_reservation.day)
+                        if (clien_reservation[j].date_reservation.day > clien_reservation[j + 1].date_reservation.day)
                         {
                             temp = clien_reservation[j];
                             clien_reservation[j] = clien_reservation[j + 1];
                             clien_reservation[j + 1] = temp;
                         }
-                        
-                    }else if (clien_reservation[j].date_reservation.month > clien_reservation[j+1].date_reservation.month)
+                    }
+                    else if (clien_reservation[j].date_reservation.month > clien_reservation[j + 1].date_reservation.month)
                     {
                         temp = clien_reservation[j];
                         clien_reservation[j] = clien_reservation[j + 1];
-                        clien_reservation[j + 1] = temp;  
+                        clien_reservation[j + 1] = temp;
                     }
-            
-                    
-                }else if (clien_reservation[j].date_reservation.year > clien_reservation[j+1].date_reservation.year)
+                }
+                else if (clien_reservation[j].date_reservation.year > clien_reservation[j + 1].date_reservation.year)
                 {
                     temp = clien_reservation[j];
                     clien_reservation[j] = clien_reservation[j + 1];
                     clien_reservation[j + 1] = temp;
-
                 }
-
             }
-        
         }
 
         // affichage afte tri by date:
         affichage_res();
-
     }
-    
-
-
 
     else if (choice_menu_4 == 4)
     {
@@ -592,10 +580,9 @@ void search_res()
 
     if (count_reservation == 0)
     {
-        printf(COLOR_YELLOW"reservations empty.\n"COLOR_BLUE);
+        printf(COLOR_YELLOW "reservations empty.\n" COLOR_BLUE);
         return;
     }
-
 
     // menu 5 :
     int choice_meni_5;
@@ -647,11 +634,11 @@ void search_res()
                    clien_reservation[i].date_reservation.month,
                    clien_reservation[i].date_reservation.year);
 
-            printf(COLOR_GREEN "+----------+------------+------------+----------------+-------+----------+-------------+\n"COLOR_BLUE);
+            printf(COLOR_GREEN "+----------+------------+------------+----------------+-------+----------+-------------+\n" COLOR_BLUE);
         }
         else
         {
-            printf(COLOR_RED"ID Not Found.\n"COLOR_BLUE);
+            printf(COLOR_RED "ID Not Found.\n" COLOR_BLUE);
             return;
         }
     }
@@ -693,22 +680,22 @@ void search_res()
                    clien_reservation[i].date_reservation.month,
                    clien_reservation[i].date_reservation.year);
 
-            printf(COLOR_GREEN "+----------+------------+------------+----------------+-------+----------+-------------+\n"COLOR_BLUE);
+            printf(COLOR_GREEN "+----------+------------+------------+----------------+-------+----------+-------------+\n" COLOR_BLUE);
         }
         else
         {
-            printf(COLOR_RED"Name Not Found.\n"COLOR_BLUE);
+            printf(COLOR_RED "Name Not Found.\n" COLOR_BLUE);
             return;
         }
     }
     else if (choice_meni_5 == 3)
     {
         // printf(COLOR_RED"Feature not available.\n"COLOR_BLUE);
-        
+
         int search_year;
         int search_month;
         int search_day;
-        printf(COLOR_GREEN"\n---------\n"COLOR_BLUE);
+        printf(COLOR_GREEN "\n---------\n" COLOR_BLUE);
         printf("searching by date : \n");
         getchar();
         printf("Enter year : ");
@@ -721,22 +708,19 @@ void search_res()
         getchar();
         printf("Enter day : ");
         scanf("%d", &search_day);
-        
+
         int i;
         int found = 0;
-        for ( i = 0; i < count_reservation; i++)
+        for (i = 0; i < count_reservation; i++)
         {
-            if ( search_year == clien_reservation[i].date_reservation.year 
-            && search_month == clien_reservation[i].date_reservation.month
-            && search_day == clien_reservation[i].date_reservation.day 
-            )
+            if (search_year == clien_reservation[i].date_reservation.year && search_month == clien_reservation[i].date_reservation.month && search_day == clien_reservation[i].date_reservation.day)
             {
                 found = 1;
                 break;
             }
         }
 
-        if ( found == 1)
+        if (found == 1)
         {
 
             printf(COLOR_GREEN "\n============================== search by date ================================\n");
@@ -755,16 +739,13 @@ void search_res()
                    clien_reservation[i].date_reservation.month,
                    clien_reservation[i].date_reservation.year);
 
-            printf(COLOR_GREEN "+----------+------------+------------+----------------+-------+----------+-------------+\n"COLOR_BLUE);
-            
-        }else
+            printf(COLOR_GREEN "+----------+------------+------------+----------------+-------+----------+-------------+\n" COLOR_BLUE);
+        }
+        else
         {
-            printf(COLOR_RED"Date Not Found.\n"COLOR_BLUE);
+            printf(COLOR_RED "Date Not Found.\n" COLOR_BLUE);
             return;
         }
-
-
-
     }
     else if (choice_meni_5 == 4)
     {
@@ -778,7 +759,7 @@ void statistiques()
 
     if (count_reservation == 0)
     {
-        printf(COLOR_YELLOW"reservations empty.\n"COLOR_BLUE);
+        printf(COLOR_YELLOW "reservations empty.\n" COLOR_BLUE);
         return;
     }
 
@@ -873,15 +854,13 @@ void statistiques()
         printf(COLOR_GREEN "\n------------------\n" COLOR_BLUE);
         printf("Number of bookings with status : \n");
 
+        printf(COLOR_GREEN "\n========== number of bookings with status ==========\n");
+        printf(COLOR_GREEN "\n+-----------+------------+------------+------------+\n");
+        printf(COLOR_BLUE "| Valid     | Postponed  | Canceled   | Processed  |");
+        printf(COLOR_GREEN "\n+-----------+------------+------------+------------+\n");
 
-        printf(COLOR_GREEN"\n========== number of bookings with status ==========\n");
-        printf(COLOR_GREEN"\n+-----------+------------+------------+------------+\n");
-        printf(COLOR_BLUE"| Valid     | Postponed  | Canceled   | Processed  |");
-        printf(COLOR_GREEN"\n+-----------+------------+------------+------------+\n");
-
-        printf(COLOR_BLUE"| %-10d| %-11d| %-11d| %-11d|\n", number_valid, number_postponed, number_canceled, number_processed);
-        printf(COLOR_GREEN"+-----------+------------+------------+------------+\n"COLOR_BLUE);
-
+        printf(COLOR_BLUE "| %-10d| %-11d| %-11d| %-11d|\n", number_valid, number_postponed, number_canceled, number_processed);
+        printf(COLOR_GREEN "+-----------+------------+------------+------------+\n" COLOR_BLUE);
     }
     else if (choice_menu_6 == 4)
     {

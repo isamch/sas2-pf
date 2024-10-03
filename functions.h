@@ -12,15 +12,13 @@
 // Define color default
 #define COLOR_RESET "\033[0m"
 
-
 // defin max:
 #define max_reser 100
 #define max_char 50
 #define max_id 6
 
-
 // structur :
-typedef struct 
+typedef struct
 {
     int day;
     int month;
@@ -28,26 +26,22 @@ typedef struct
 
 } date_reservation;
 
-
-typedef struct 
+typedef struct
 {
     char id_clien[max_id];
     char first_name[max_char];
     char last_name[max_char];
     char phone_number[max_char];
-    int  age;
+    int age;
     char status[max_char];
     date_reservation date_reservation;
 
 } dentaires_reservation;
 
-
-
 // ------------------:
 extern dentaires_reservation clien_reservation[max_reser];
 
 extern int count_reservation;
-
 
 // functoin link :
 
@@ -60,11 +54,5 @@ void sorting_res();
 void search_res();
 void statistiques();
 void wit_for_entr();
-
-
-
-
-
-
 
 #endif
