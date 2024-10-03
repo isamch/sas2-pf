@@ -57,7 +57,7 @@ void modify_delet();
 void affichage_res();
 void sorting_res();
 void search_res();
-
+void statistiques();
 
 
 

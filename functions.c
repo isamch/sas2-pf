@@ -11,8 +11,6 @@
 #include "functions.h"
 
 int count_reservation = 0;
-// int count_rend_day = 0;
-
 
 
 // Affichage Menu:
@@ -30,9 +28,9 @@ void show_menu()
 }
 
 
-// repet loop function :
 
-void for_add()
+// repet loop function :===============================================
+void for_add() 
 {
     int loop_choose;
     printf("How many reservations do you want to add? : ");
@@ -147,7 +145,7 @@ void add_reservation()
 }
 
 
-// 2. Modifier ou supprimer une réservation :
+// 2. Modifier ou supprimer une réservation : ===============================================
 void modify_delet(){
 
     int choice_2;
@@ -406,7 +404,7 @@ void modify_delet(){
 
 
 
-// 3. Afficher les détails d'une réservation :
+// 3. Afficher les détails d'une réservation : ===============================================
 void affichage_res(){
 
     printf(COLOR_RED "\n============================== Reservations List ================================\n");
@@ -457,7 +455,7 @@ void affichage_res(){
 
 
 
-// 4. Tri des réservations :
+// 4. Tri des réservations : ===============================================
 void sorting_res(){
 
     int choice_menu_4;
@@ -519,7 +517,7 @@ void sorting_res(){
 }
 
 
-// 5. Recherche des réservations :
+// 5. Recherche des réservations :===============================================
 void search_res(){
 
     // menu 5 :
@@ -587,7 +585,7 @@ void search_res(){
         int i;
         for ( i = 0; i < count_reservation; i++)
         {
-            if (strcmp( search_by_f_name, clien_reservation[i].first_name ) == 0)
+            if (strcasecmp( search_by_f_name, clien_reservation[i].first_name ) == 0)
             {
                 found = 1;
                 break;
@@ -637,8 +635,8 @@ void search_res(){
 
 
 
-// 6. Statistiques :
-void Statistiques(){
+// 6. Statistiques :===============================================
+void statistiques(){
 
     int choice_menu_6;
     // menu _ 6 :
@@ -658,32 +656,89 @@ void Statistiques(){
         int sum = 0;
         for (int i = 0; i < count_reservation; i++)
         {
-            
 
-
-
+            sum = sum + clien_reservation[i].age;
         }
         
+        average_age = sum / count_reservation;
+
+        printf("\n----------------\n");
+        printf("The Average age is : %d", average_age);
 
 
     }else if ( choice_menu_6 == 2)
     {
+        // Show the number of patients by age group:
+        int age_0_18 = 0;
+        int age_19_35 = 0;
+        int age_36_ = 0;
 
+        printf("\n----------------\n");
+
+        for (int i = 0; i < count_reservation; i++)
+        {
+            if ( clien_reservation[i].age >= 0 && clien_reservation[i].age <=18 )
+            {
+                age_0_18++;   
+            }else if ( clien_reservation[i].age >= 19 && clien_reservation[i].age <=35 )
+            {
+                age_19_35++;    
+            }else if ( clien_reservation[i].age >= 36)
+            {
+                age_36_++;
+            }
+        }
+
+        printf("\n number of patients by age group : \n");
+        // resault :
+        printf("Patients between (00 -- 18) : %d\n", age_0_18);
+        printf("Patients between (19 -- 35) : %d\n", age_19_35);
+        printf("Patients older than (36)    : %d\n", age_36_);
 
     }else if ( choice_menu_6 == 3)
     {
 
+        // Generate statistics to know the total number of reservations by status :
+        
+        int number_valid     = 0;
+        int number_postponed = 0;
+        int number_canceled  = 0;
+        int number_processed = 0;
 
-    }else if (choice_menu_6 == 4)
-    {
-
-
-    }
     
 
 
-}
+        for (int i = 0; i < count_reservation; i++)
+        {
+            if ( strcmp(clien_reservation[i].status , "valid") == 0)
+            {
+                number_valid++;
+            }else if ( strcmp(clien_reservation[i].status , "postponed") == 0)
+            {
+                number_postponed++;
+            }else if ( strcmp(clien_reservation[i].status , "canceled") == 0)
+            {
+                number_canceled++;
+            }else if ( strcmp(clien_reservation[i].status , "processed") == 0)
+            {
+                number_processed++;
+            }
+        }
 
+        printf("\n------------------\n");
+        printf("Number of bookings with status : \n");
+        printf("Valid     : %d\n", number_valid);
+        printf("postponed : %d\n", number_postponed);
+        printf("canceled  : %d\n", number_canceled);
+        printf("processed : %d\n", number_processed);
+
+
+    }else if (choice_menu_6 == 4)
+    {
+        return;
+    }
+    
+}
 
 
 

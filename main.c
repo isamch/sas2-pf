@@ -46,8 +46,13 @@ int main(){
         case 4:
             sorting_res();
             break;
+        case 5:
+            search_res();
+            break;
+        case 6:
+            statistiques();
+            break;
         }
-
 
 
     } while (1);
