@@ -5,16 +5,13 @@
 #include <time.h>
 
 
-
 // programmation modulaire :
 #include "functions.h"
 
 
 
-dentaires_reservation clien_reservation[max_reser_month];
+dentaires_reservation clien_reservation[max_reser];
  
-
-
 
 
 
@@ -27,6 +24,7 @@ int main(){
     {
 
         // show menu :
+        show_menu();
 
         printf("Enter your choice : ");
         scanf("%d", &choice_main);
@@ -36,16 +34,17 @@ int main(){
         switch (choice_main)
         {
         case 1:
-
+            for_add();
             break;
         case 2:
-
+            modify_delet();
             break;
         case 3:
-
+            affichage_res();
             break;
         
-        default:
+        case 4:
+            sorting_res();
             break;
         }
 
@@ -56,4 +55,3 @@ int main(){
 
     return 0;
 }
-

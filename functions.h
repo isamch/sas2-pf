@@ -14,9 +14,9 @@
 
 
 // defin max:
-#define max_reser_month 600
-#define max_reser_per_day 10
+#define max_reser 600
 #define max_char 50
+#define max_id 6
 
 
 // structur :
@@ -28,26 +28,35 @@ typedef struct
 
 } date_reservation;
 
+
 typedef struct 
 {
-    char firs_name[max_char];
+    char id_clien[max_id];
+    char first_name[max_char];
     char last_name[max_char];
     char phone_number[max_char];
     int  age;
     char status[max_char];
-    int id_clien;
     date_reservation date_reservation;
 
 } dentaires_reservation;
 
 
 
-extern dentaires_reservation clien_reservation[max_reser_month];
+// ------------------:
+extern dentaires_reservation clien_reservation[max_reser];
 
+extern int count_reservation;
 
 
 // functoin link :
-
+void show_menu();
+void for_add();
+void add_reservation();
+void modify_delet();
+void affichage_res();
+void sorting_res();
+void search_res();
 
 
 
