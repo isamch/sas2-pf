@@ -14,7 +14,7 @@
 
 
 // defin max:
-#define max_reser 600
+#define max_reser 100
 #define max_char 50
 #define max_id 6
 
@@ -50,6 +50,7 @@ extern int count_reservation;
 
 
 // functoin link :
+
 void show_menu();
 void for_add();
 void add_reservation();
@@ -58,7 +59,7 @@ void affichage_res();
 void sorting_res();
 void search_res();
 void statistiques();
-
+void wit_for_entr();
 
 
 
