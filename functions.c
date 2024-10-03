@@ -649,7 +649,7 @@ void search_res()
         int found = 0;
         int i;
         getchar();
-        printf("\nEnter Id : ");
+        printf("\nEnter first Name : ");
         scanf("%[^\n]", search_by_f_name);
 
         for (i = 0; i < count_reservation; i++)
