@@ -16,6 +16,7 @@
 #define max_reser 100
 #define max_char 50
 #define max_id 6
+#define max_per_day 10
 
 // structur :
 typedef struct

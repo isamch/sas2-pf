@@ -11,8 +11,36 @@ dentaires_reservation clien_reservation[max_reser];
 
 int main()
 {
+    
+    char id_r[10][6] = { "RES01", "RES02", "RES03", "RES04", "RES05"};
+    char fr_name[10][max_char] = { "isam", "ayman", "said", "kaoutar", "hassan" };
+    char ls_name[10][max_char] = { "chajia", "sadouk", "jebran", "amali", "semlali" };
+    char ph_nbr[10][max_char] = { "0642932731", "0624769894", "0624587527", "062455223", "0624542521",  };
+    int age_r[10] = { 16, 22, 12, 45, 21 };
+    int day_r[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    int month_r[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+    for (int i = 0; i < 5; i++)
+    {
+        // reservation 1:
+        strcpy(clien_reservation[i].id_clien, id_r[i]);
+        strcpy(clien_reservation[i].first_name, fr_name[i]);
+        strcpy(clien_reservation[i].last_name, ls_name[i]);
+        strcpy(clien_reservation[i].phone_number, ph_nbr[i]);
+        clien_reservation[i].age = age_r[i];
+        strcpy(clien_reservation[i].status, "valid");
+        clien_reservation[i].date_reservation.day = day_r[i];
+        clien_reservation[i].date_reservation.month = month_r[i];
+        clien_reservation[i].date_reservation.year = 2024;
+    
+    }
+    
+    
+
 
     int choice_main;
+
+
 
     // logo :
     printf("\033[1;34m"
@@ -26,10 +54,10 @@ int main()
            "        | | () |     | () | |   _______\n"
            "        | |____|     |____| |  /       \\\n"
            "        |                   | |  SMILE  |\n"
-           "        |     _________      |  \\_______/\n"
-           "        |    |         |     |\n"
-           "        |    |_________|     |\n"
-           "        |____________________|\n"
+           "        |     _________     |  \\_______/\n"
+           "        |    |         |    |\n"
+           "        |    |_________|    |\n"
+           "        |___________________|\n"
            "\033[0m");
 
     do
@@ -84,7 +112,28 @@ int main()
             system("cls");
             break;
         case 7:
-            printf("Have a good day !!\n");
+            system("cls");
+            printf("\nHave a good day !!\n");
+            printf(COLOR_YELLOW"Have a good day !!\n");
+            printf(COLOR_RED"Have a good day !!\n"COLOR_RESET);
+
+            // logo :
+            printf("\033[1;34m"
+                "            _____________\n"
+                "           /             \\\n"
+                "          /   Dental      \\\n"
+                "         /     Clinic      \\\n"
+                "        |___________________|\n"
+                "        |  ____       ____  |\n"
+                "        | |    |     |    | |\n"
+                "        | | () |     | () | |   _______\n"
+                "        | |____|     |____| |  /       \\\n"
+                "        |                   | |  BY!!!  |\n"
+                "        |     _________     |  \\_______/\n"
+                "        |    |         |    |\n"
+                "        |    |_________|    |\n"
+                "        |___________________|\n"
+                "\033[0m");
             exit(1);
             break;
         }

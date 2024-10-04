@@ -7,7 +7,7 @@
 // programmation modulaire :
 #include "functions.h"
 
-int count_reservation = 0;
+int count_reservation = 5;
 
 // wait for enter :
 void wit_for_entr()
@@ -27,7 +27,7 @@ void show_menu()
     printf("  > 4. Sort bookings.\n");
     printf("  > 5. Search reservations.\n");
     printf("  > 6. Statistics.\n");
-    printf("  > 7. Exit.\n");
+    printf(COLOR_YELLOW"  >> 7. Exit.\n"COLOR_BLUE);
     printf(COLOR_GREEN "\n===================================\n" COLOR_BLUE);
 }
 
@@ -47,7 +47,19 @@ void for_add()
         printf("How many reservations do you want to add? ");
         printf(COLOR_RED "(Entrez 0 pour retour):  " COLOR_BLUE);
 
-        scanf("%d", &loop_choose);
+        int input = scanf("%d", &loop_choose);
+        
+        // cheack :
+        while (input != 1)
+        {
+            printf(COLOR_RED "wrong choice.!!\n" COLOR_BLUE);
+            getchar();
+            printf("Enter your choice : ");
+            input = scanf("%d", &loop_choose);
+            getchar();
+        }
+
+
         if (loop_choose == 0)
         {
             return;
@@ -66,12 +78,13 @@ void for_add()
                 printf(COLOR_GREEN "\n-----------------\n" COLOR_BLUE);
 
                 add_reservation();
+                system("cls");
             }
         }
     }
 }
 
-// add reservation :
+// add reservation : ==============================================
 void add_reservation()
 {
 
@@ -128,6 +141,9 @@ void add_reservation()
         break;
     }
 
+    // date ------------:
+    max_day_full:
+
     // add date :
     printf("Enter the reservation date.\n");
     do
@@ -151,8 +167,31 @@ void add_reservation()
         scanf("%d", &clien_reservation[count_reservation].date_reservation.year);
     } while (clien_reservation[count_reservation].date_reservation.year > 2025 || clien_reservation[count_reservation].date_reservation.year <= 2023);
 
+
+    // check for free reservation : ------
+
+    int count_per_day = 0;
+
+    for (int i = 0; i < count_reservation; i++)
+    {
+        if (clien_reservation[count_reservation].date_reservation.year == clien_reservation[i].date_reservation.year 
+            && clien_reservation[count_reservation].date_reservation.month == clien_reservation[i].date_reservation.month 
+            && clien_reservation[count_reservation].date_reservation.day == clien_reservation[i].date_reservation.day)
+        {
+            count_per_day++;
+        }
+    }
+
+    if (count_per_day >= max_per_day)
+    {
+        printf(COLOR_RED"\nAll Reservation are Booked on this Date!!\n"COLOR_BLUE);
+        printf(COLOR_GREEN"\n------\n"COLOR_BLUE);
+        goto max_day_full;
+    }
+    
+
     count_reservation++;
-    printf(COLOR_GREEN "successfully done!!\n" COLOR_GREEN);
+    printf(COLOR_GREEN "SUCCESSFULLY DONE!!\n" COLOR_GREEN);
 }
 
 // 2. Modifier ou supprimer une réservation : ===============================================
@@ -170,10 +209,22 @@ void modify_delet()
     printf(COLOR_GREEN "\n============= Edit & Delet ===============\n");
     printf(COLOR_BLUE "  > 1. Edit.\n");
     printf(COLOR_RED "  > 2. Delet.\n" COLOR_YELLOW);
-    printf("  > 3. return.\n");
+    printf("  >> 3. return.\n");
     printf(COLOR_GREEN "\n---------------\n" COLOR_BLUE);
     printf("enter you choice : ");
-    scanf("%d", &choice_2);
+    int input = scanf("%d", &choice_2);
+
+    // cheack :
+    while (input != 1 || choice_2 > 3 || choice_2 <= 0)
+    {
+        printf(COLOR_RED "wrong choice.!!\n" COLOR_BLUE);
+        getchar();
+        printf("Enter your choice : ");
+        input = scanf("%d", &choice_2);
+        getchar();
+    }
+
+    
 
     while (choice_2 < 1 || choice_2 > 3)
     {
@@ -211,7 +262,27 @@ void modify_delet()
 
             // edit choice :
             int choice_menu_2_1;
-            printf(COLOR_GREEN "\n-------------------\n" COLOR_BLUE);
+            // table : 
+            printf(COLOR_GREEN "\n+----------+------------+------------+----------------+-------+----------+-------------+\n");
+            printf(COLOR_BLUE "| ID       | f-name     | l-name     | phone number   | age   | status   | date        |");
+            printf(COLOR_GREEN "\n+----------+------------+------------+----------------+-------+----------+-------------+\n");
+
+            printf(COLOR_BLUE "| %-9s| %-11s| %-11s| %-15s| %-6d| %-9s| %02d-%02d-%04d  |\n",
+                   clien_reservation[i].id_clien,
+                   clien_reservation[i].first_name,
+                   clien_reservation[i].last_name,
+                   clien_reservation[i].phone_number,
+                   clien_reservation[i].age,
+                   clien_reservation[i].status,
+                   clien_reservation[i].date_reservation.day,
+                   clien_reservation[i].date_reservation.month,
+                   clien_reservation[i].date_reservation.year);
+
+            printf(COLOR_GREEN "+----------+------------+------------+----------------+-------+----------+-------------+\n\n" COLOR_BLUE);
+
+
+
+
             printf("want to edit : \n");
             printf(" > 0. All.\n");
             printf(" > 1. first name.\n");
@@ -220,14 +291,21 @@ void modify_delet()
             printf(" > 4. age.\n");
             printf(" > 5. statue.\n");
             printf(" > 6. date.\n");
-            printf(COLOR_YELLOW " > 7. return.\n");
+            printf(COLOR_YELLOW " >> 7. return.\n"COLOR_BLUE);
             printf(COLOR_GREEN "\n-----\n" COLOR_BLUE);
 
-            do
+            printf("enter : ");        
+            int input = scanf("%d", &choice_menu_2_1);
+
+            // cheack :
+            while (input != 1 || choice_menu_2_1 > 7 || choice_menu_2_1 < 0)
             {
-                printf("enter : ");
-                scanf("%d", &choice_menu_2_1);
-            } while (choice_menu_2_1 > 7 || choice_menu_2_1 < 0);
+                printf(COLOR_RED "wrong choice.!!\n" COLOR_BLUE);
+                getchar();
+                printf("Enter your choice : ");
+                input = scanf("%d", &choice_menu_2_1);
+                getchar();
+            }
 
             printf(COLOR_GREEN "\n----------------------\n" COLOR_BLUE);
             switch (choice_menu_2_1)
@@ -267,18 +345,21 @@ void modify_delet()
                 switch (choice_status)
                 {
                 case 1:
-                    strcpy(clien_reservation[count_reservation].status, "valid");
+                    strcpy(clien_reservation[i].status, "valid");
                     break;
                 case 2:
-                    strcpy(clien_reservation[count_reservation].status, "postponed");
+                    strcpy(clien_reservation[i].status, "postponed");
                     break;
                 case 3:
-                    strcpy(clien_reservation[count_reservation].status, "canceled");
+                    strcpy(clien_reservation[i].status, "canceled");
                     break;
                 case 4:
-                    strcpy(clien_reservation[count_reservation].status, "processed");
+                    strcpy(clien_reservation[i].status, "processed");
                     break;
                 }
+
+                // goto fn:
+                max_day_full_fnedit_1:
 
                 // new date :
                 printf("enter new date ; \n");
@@ -302,6 +383,30 @@ void modify_delet()
                     printf("Year  : ");
                     scanf("%d", &clien_reservation[i].date_reservation.year);
                 } while (clien_reservation[i].date_reservation.year > 2025 || clien_reservation[i].date_reservation.year <= 2023);
+
+                // check date:
+                // check for free reservation : ------
+
+                int count_per_day = 0;
+
+                for (int j = 0; j < count_reservation; j++)
+                {
+                    if (clien_reservation[i].date_reservation.year == clien_reservation[j].date_reservation.year 
+                        && clien_reservation[i].date_reservation.month == clien_reservation[j].date_reservation.month 
+                        && clien_reservation[i].date_reservation.day == clien_reservation[j].date_reservation.day)
+                    {
+                        count_per_day++;
+                    }
+                }
+
+                if (count_per_day > max_per_day)
+                {
+                    printf(COLOR_RED"\nAll Reservation are Booked on this Date!!\n"COLOR_BLUE);
+                    printf(COLOR_GREEN"\n------\n"COLOR_BLUE);
+                    goto max_day_full_fnedit_1;
+                }
+
+
 
                 break;
             case 1:
@@ -340,21 +445,24 @@ void modify_delet()
                 switch (choice_status)
                 {
                 case 1:
-                    strcpy(clien_reservation[count_reservation].status, "valid");
+                    strcpy(clien_reservation[i].status, "valid");
                     break;
                 case 2:
-                    strcpy(clien_reservation[count_reservation].status, "postponed");
+                    strcpy(clien_reservation[i].status, "postponed");
                     break;
                 case 3:
-                    strcpy(clien_reservation[count_reservation].status, "canceled");
+                    strcpy(clien_reservation[i].status, "canceled");
                     break;
                 case 4:
-                    strcpy(clien_reservation[count_reservation].status, "processed");
+                    strcpy(clien_reservation[i].status, "processed");
                     break;
                 }
 
                 break;
             case 6:
+                // goto fn 2:
+                max_day_full_fnedit_2:
+
                 // new date :
                 printf("enter new date ; \n");
                 do
@@ -377,13 +485,37 @@ void modify_delet()
                     printf("Year  : ");
                     scanf("%d", &clien_reservation[i].date_reservation.year);
                 } while (clien_reservation[i].date_reservation.year > 2025 || clien_reservation[i].date_reservation.year <= 2023);
+
+                // check date:
+                // check for free reservation : ------
+
+                count_per_day = 0;
+
+                for (int j = 0; j < count_reservation; j++)
+                {
+                    if (clien_reservation[i].date_reservation.year == clien_reservation[j].date_reservation.year 
+                        && clien_reservation[i].date_reservation.month == clien_reservation[j].date_reservation.month 
+                        && clien_reservation[i].date_reservation.day == clien_reservation[j].date_reservation.day)
+                    {
+                        count_per_day++;
+                    }
+                }
+
+                if (count_per_day > max_per_day)
+                {
+                    printf(COLOR_RED"\nAll Reservation are Booked on this Date!!\n"COLOR_BLUE);
+                    printf(COLOR_GREEN"\n------\n"COLOR_BLUE);
+                    goto max_day_full_fnedit_2;
+                }
+
+
                 break;
             case 7:
                 return;
                 break;
             }
 
-            printf(COLOR_GREEN "successfully done!!\n" COLOR_GREEN);
+            printf(COLOR_GREEN "SUCCESSFULLY DONE!!\n" COLOR_GREEN);
         }
     }
     else if (choice_2 == 2)
@@ -412,6 +544,27 @@ void modify_delet()
         }
         else
         {
+            printf(COLOR_RED"\nDelet Reservation : \n"COLOR_BLUE);
+            // table : 
+            printf(COLOR_GREEN "\n+----------+------------+------------+----------------+-------+----------+-------------+\n");
+            printf(COLOR_BLUE "| ID       | f-name     | l-name     | phone number   | age   | status   | date        |");
+            printf(COLOR_GREEN "\n+----------+------------+------------+----------------+-------+----------+-------------+\n");
+
+            printf(COLOR_BLUE "| %-9s| %-11s| %-11s| %-15s| %-6d| %-9s| %02d-%02d-%04d  |\n",
+                   clien_reservation[i].id_clien,
+                   clien_reservation[i].first_name,
+                   clien_reservation[i].last_name,
+                   clien_reservation[i].phone_number,
+                   clien_reservation[i].age,
+                   clien_reservation[i].status,
+                   clien_reservation[i].date_reservation.day,
+                   clien_reservation[i].date_reservation.month,
+                   clien_reservation[i].date_reservation.year);
+
+            printf(COLOR_GREEN "+----------+------------+------------+----------------+-------+----------+-------------+\n\n" COLOR_BLUE);
+
+
+
 
             for (i = i; i < count_reservation - 1; i++)
             {
@@ -419,7 +572,7 @@ void modify_delet()
             }
             count_reservation--;
         }
-        printf(COLOR_GREEN "successfully done!!\n" COLOR_GREEN);
+        printf(COLOR_GREEN "SUCCESSFULLY DONE!!\n" COLOR_GREEN);
     }
     else if (choice_2 == 3)
     {
@@ -483,7 +636,18 @@ void sorting_res()
     printf(COLOR_YELLOW " >> 4. return.\n" COLOR_BLUE);
     printf("enter : ");
     getchar();
-    scanf("%d", &choice_menu_4);
+    int input = scanf("%d", &choice_menu_4);
+
+
+    // cheack :
+    while (input != 1 || choice_menu_4 > 4 || choice_menu_4 <= 0)
+    {
+        printf(COLOR_RED "wrong choice.!!\n" COLOR_BLUE);
+        getchar();
+        printf("Enter your choice : ");
+        input = scanf("%d", &choice_menu_4);
+        getchar();
+    }
 
     dentaires_reservation temp;
 
@@ -591,10 +755,21 @@ void search_res()
     printf(" > 1. ID.\n");
     printf(" > 2. first name.\n");
     printf(" > 3. date.\n");
-    printf(" >> 4. return.\n");
+    printf(COLOR_YELLOW" >> 4. return.\n"COLOR_BLUE);
     getchar();
     printf("enter : ");
-    scanf("%d", &choice_meni_5);
+    int input = scanf("%d", &choice_meni_5);
+
+
+    // cheack :
+    while (input != 1 || choice_meni_5 > 4 || choice_meni_5 <= 0)
+    {
+        printf(COLOR_RED "wrong choice.!!\n" COLOR_BLUE);
+        getchar();
+        printf("Enter your choice : ");
+        input = scanf("%d", &choice_meni_5);
+        getchar();
+    }
 
     if (choice_meni_5 == 1)
     {
@@ -649,7 +824,7 @@ void search_res()
         int found = 0;
         int i;
         getchar();
-        printf("\nEnter first Name : ");
+        printf("\nEnter first name : ");
         scanf("%[^\n]", search_by_f_name);
 
         for (i = 0; i < count_reservation; i++)
@@ -691,6 +866,7 @@ void search_res()
     else if (choice_meni_5 == 3)
     {
         // printf(COLOR_RED"Feature not available.\n"COLOR_BLUE);
+        // searching by date :
 
         int search_year;
         int search_month;
@@ -772,7 +948,18 @@ void statistiques()
     printf(COLOR_YELLOW " >> 4. return.\n" COLOR_BLUE);
     getchar();
     printf("enter : ");
-    scanf("%d", &choice_menu_6);
+    int input = scanf("%d", &choice_menu_6);
+
+    // cheack :
+    while (input != 1 || choice_menu_6 > 4 || choice_menu_6 <= 0)
+    {
+        printf(COLOR_RED "wrong choice.!!\n" COLOR_BLUE);
+        getchar();
+        printf("Enter your choice : ");
+        input = scanf("%d", &choice_menu_6);
+        getchar();
+    }
+    
 
     if (choice_menu_6 == 1)
     {
